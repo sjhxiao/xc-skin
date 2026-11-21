@@ -1,10 +1,10 @@
-/* 星辰 AI 小店（xingchen666.store）· 暖亚麻黑曜换肤脚本（独立上线版）
- * 用法：上传至可公开访问的地址，后台填一行 <script src="..."></script> 引用
+/* 星辰 AI 小店（xingchen666.store）· 暖亚麻黑曜换肤脚本 v2.2（防闪烁 + 排版修复版）
+ * 用法：尽量把 <script src="...xc-theme-linen.js?v=22"></script> 放到后台「头部/<head>代码」区（勿加 defer/async）以彻底消除整页跳转闪烁
  * 回滚：删掉后台那行引用即可，页面立即恢复原样
  */
 (function () {
   if (window.__xc) return;
-  window.__xc = 1;
+  window.__xc = 22;
 
   try {
     var SID = 'xc-theme-style';
@@ -41,6 +41,11 @@ body.tokyo-theme .panel-title,body.tokyo-theme .tokyo-current-name{color:var(--q
 body.tokyo-theme .tokyo-catalog-body,body.tokyo-theme .tokyo-table-wrap,body.tokyo-theme .cream-waterfall{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
 body.tokyo-theme .tokyo-searchbox,body.tokyo-theme .tokyo-searchbox-combo{background:#FFF!important;border:1px solid var(--q-line)!important;border-radius:999px!important}
 
+/* 防闪烁遮罩：未替换完成前先隐藏旧图，彻底杜绝切分类/PJAX 时闪出旧白框或旧图标 */
+body.tokyo-theme .cream-waterfall-cover:not(.xc-ready),
+body.tokyo-theme .tokyo-category-icon:not(.xc-ready),
+body.tokyo-theme .tokyo-mobile-category-chip-icon:not(.xc-ready){background-image:none!important}
+
 /* 2. 电脑端左侧分类：单列不截断 + 发光 AI 圆角图标 */
 body.tokyo-theme #tokyo-category-tree.tokyo-category-tree{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;padding:4px 2px!important;max-height:calc(100vh - 150px)!important}
 body.tokyo-theme .tokyo-category-node,body.tokyo-theme .tokyo-category-row{width:100%!important;margin:0!important}
@@ -57,7 +62,7 @@ body.tokyo-theme .tokyo-category-link.is-active,body.tokyo-theme .tokyo-category
 body.tokyo-theme .tokyo-category-link.is-active .tokyo-category-name,body.tokyo-theme .tokyo-category-link.active .tokyo-category-name,body.tokyo-theme .tokyo-category-link.is-active .tokyo-category-side{color:var(--q-on)!important}
 body.tokyo-theme .tokyo-category-link.is-active .tokyo-category-count,body.tokyo-theme .tokyo-category-link.active .tokyo-category-count{background:rgba(255,210,122,.18)!important;color:var(--q-gold)!important}
 
-/* 3. 黑曜石商品卡片 + 无缝发光 AI 图标 + 悬停微放大 + 分级胶囊 */
+/* 3. 黑曜石商品卡片 + 无缝发光 AI 图标 + 悬停微放大 + 修复标题两行正常折行 */
 body.tokyo-theme .cream-waterfall-card{position:relative!important;isolation:isolate!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;background:var(--q-card)!important;border:0!important;border-radius:14px!important;box-shadow:0 10px 24px rgba(28,27,25,.14)!important;color:var(--q-on)!important;text-decoration:none!important;transition:transform .25s ease,box-shadow .25s ease!important}
 body.tokyo-theme .cream-waterfall-card:hover{transform:translateY(-3px)!important;box-shadow:0 18px 36px rgba(28,27,25,.26)!important}
 body.tokyo-theme .cream-waterfall-cover{position:relative!important;display:block!important;width:100%!important;min-width:100%!important;max-width:100%!important;height:auto!important;min-height:150px!important;max-height:300px!important;aspect-ratio:1/.92!important;padding:0!important;margin:0!important;overflow:hidden!important;border:none!important;background:radial-gradient(75% 55% at 50% 35%,#3B3934 0%,#1C1B19 100%)!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important}
@@ -68,10 +73,10 @@ body.tokyo-theme .cream-waterfall-card[data-xc-badge]::after{content:attr(data-x
 body.tokyo-theme .cream-waterfall-card[data-xc-bt="hot"]::after{background:#EF4444!important;border-color:#EF4444!important;color:#FFF!important;box-shadow:0 4px 12px rgba(239,68,68,.4)!important}
 body.tokyo-theme .cream-waterfall-card[data-xc-bt="gold"]::after{background:rgba(42,35,20,.65)!important;border-color:rgba(255,210,122,.52)!important;color:#FFD27A!important}
 body.tokyo-theme .cream-waterfall-card[data-xc-bt="blue"]::after{background:rgba(30,58,138,.58)!important;border-color:rgba(147,197,253,.5)!important;color:#EFF6FF!important}
-body.tokyo-theme .cream-waterfall-info{position:relative!important;z-index:2!important;display:flex!important;flex-direction:column!important;flex:1 1 auto!important;gap:8px!important;padding:4px 16px 16px!important;margin-top:-10px!important;box-sizing:border-box!important}
-body.tokyo-theme .cream-waterfall-info::before{content:"● 自动发货"!important;font-size:11px!important;letter-spacing:.12em!important;color:#7FB38A!important;line-height:1.2!important}
-body.tokyo-theme .cream-waterfall-name{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;text-overflow:ellipsis!important;color:var(--q-on)!important;font-size:14px!important;font-weight:600!important;line-height:1.45!important;min-height:2.9em!important;text-align:left!important}
-body.tokyo-theme .cream-waterfall-price{display:block!important;margin-top:auto!important;padding-top:4px!important;color:var(--q-gold)!important;font-size:22px!important;font-weight:700!important;line-height:1.1!important;letter-spacing:-.02em!important;text-align:left!important}
+body.tokyo-theme .cream-waterfall-info{position:relative!important;z-index:2!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;flex:1 1 auto!important;width:100%!important;gap:8px!important;padding:4px 15px 15px!important;margin-top:-10px!important;box-sizing:border-box!important;text-align:left!important}
+body.tokyo-theme .cream-waterfall-info::before{content:"● 自动发货"!important;display:block!important;font-size:11px!important;letter-spacing:.12em!important;color:#7FB38A!important;line-height:1.2!important;text-align:left!important}
+body.tokyo-theme .cream-waterfall-name{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:normal!important;word-break:break-word!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;color:var(--q-on)!important;font-size:13.5px!important;font-weight:600!important;line-height:1.45!important;min-height:2.9em!important;text-align:left!important}
+body.tokyo-theme .cream-waterfall-price{display:block!important;width:100%!important;margin-top:auto!important;padding-top:4px!important;color:var(--q-gold)!important;font-size:22px!important;font-weight:700!important;line-height:1.1!important;letter-spacing:-.02em!important;text-align:left!important}
 
 /* 4. 商品详情页、公告与客服 */
 body.tokyo-theme .panel.tokyo-item-panel .tokyo-item-cover-card,body.tokyo-theme .panel.tokyo-item-panel .tokyo-item-cover-trigger{background:var(--q-card)!important;border-radius:16px!important;padding:0!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important}
@@ -218,65 +223,76 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--q-car
     }
 
     function applyIcon(el, key, isTile) {
-      if (!el || !key || el.dataset.xcKey === key) return;
-      var svg = makeArt(key, isTile);
-      if (!svg) return;
-      el.innerHTML = svg;
-      el.classList.add('xc-has-svg');
-      el.dataset.xcKey = key;
+      if (!el) return;
+      if (key) {
+        if (el.dataset.xcKey !== key || !el.querySelector('svg.xc-art')) {
+          var svg = makeArt(key, isTile);
+          if (svg) {
+            el.innerHTML = svg;
+            el.classList.add('xc-has-svg');
+            el.dataset.xcKey = key;
+          }
+        }
+      }
+      if (!el.classList.contains('xc-ready')) el.classList.add('xc-ready');
     }
 
+    var inRun = false;
     function run() {
-      var cards = document.querySelectorAll('.cream-waterfall-card');
-      for (var i = 0; i < cards.length; i++) {
-        var c = cards[i], n = ((c.querySelector('.cream-waterfall-name') || c).textContent || '').trim();
-        applyIcon(c.querySelector('.cream-waterfall-cover'), matchKey(n), false);
-        if (!c.dataset.xcBadged) {
-          var b = matchBadge(n);
-          if (b) { c.setAttribute('data-xc-badge', b[0]); c.setAttribute('data-xc-bt', b[1]); }
-          c.dataset.xcBadged = '1';
+      if (inRun) return;
+      inRun = true;
+      try {
+        var cards = document.querySelectorAll('.cream-waterfall-card');
+        for (var i = 0; i < cards.length; i++) {
+          var c = cards[i], n = ((c.querySelector('.cream-waterfall-name') || c).textContent || '').trim();
+          applyIcon(c.querySelector('.cream-waterfall-cover'), matchKey(n), false);
+          if (!c.dataset.xcBadged) {
+            var b = matchBadge(n);
+            if (b) { c.setAttribute('data-xc-badge', b[0]); c.setAttribute('data-xc-bt', b[1]); }
+            c.dataset.xcBadged = '1';
+          }
         }
-      }
-      var cats = document.querySelectorAll('.tokyo-category-link');
-      for (var j = 0; j < cats.length; j++) {
-        var k = cats[j], tn = ((k.querySelector('.tokyo-category-name') || k).textContent || '').trim();
-        applyIcon(k.querySelector('.tokyo-category-icon'), matchKey(tn), true);
-      }
-      var chips = document.querySelectorAll('.tokyo-mobile-category-chip');
-      for (var m = 0; m < chips.length; m++) {
-        var ch = chips[m], p = ch.parentElement;
-        if (p && !p.classList.contains('xc-mob-list')) p.classList.add('xc-mob-list');
-        var mn = ((ch.querySelector('.tokyo-mobile-category-chip-text') || ch).textContent || '').trim();
-        applyIcon(ch.querySelector('.tokyo-mobile-category-chip-icon'), matchKey(mn), true);
-      }
-      var dTitle = document.querySelector('.tokyo-item-inline-title');
-      var dWrap = document.querySelector('.tokyo-item-panel .tokyo-item-cover-trigger');
-      if (dTitle && dWrap && !dWrap.dataset.xcKey) {
-        var dk = matchKey(dTitle.textContent || '');
-        if (dk) {
-          var img = dWrap.querySelector('.item-cover');
-          if (img) img.style.opacity = '0';
-          var box = document.createElement('span');
-          box.className = 'xc-detail-art';
-          box.innerHTML = makeArt(dk, true);
-          dWrap.insertBefore(box, dWrap.firstChild);
-          dWrap.dataset.xcKey = dk;
+        var cats = document.querySelectorAll('.tokyo-category-link');
+        for (var j = 0; j < cats.length; j++) {
+          var k = cats[j], tn = ((k.querySelector('.tokyo-category-name') || k).textContent || '').trim();
+          applyIcon(k.querySelector('.tokyo-category-icon'), matchKey(tn), true);
         }
+        var chips = document.querySelectorAll('.tokyo-mobile-category-chip');
+        for (var m = 0; m < chips.length; m++) {
+          var ch = chips[m], p = ch.parentElement;
+          if (p && !p.classList.contains('xc-mob-list')) p.classList.add('xc-mob-list');
+          var mn = ((ch.querySelector('.tokyo-mobile-category-chip-text') || ch).textContent || '').trim();
+          applyIcon(ch.querySelector('.tokyo-mobile-category-chip-icon'), matchKey(mn), true);
+        }
+        var dTitle = document.querySelector('.tokyo-item-inline-title');
+        var dWrap = document.querySelector('.tokyo-item-panel .tokyo-item-cover-trigger');
+        if (dTitle && dWrap && !dWrap.querySelector('.xc-detail-art')) {
+          var dk = matchKey(dTitle.textContent || '');
+          if (dk) {
+            var img = dWrap.querySelector('.item-cover');
+            if (img) img.style.opacity = '0';
+            var box = document.createElement('span');
+            box.className = 'xc-detail-art';
+            box.innerHTML = makeArt(dk, true);
+            dWrap.insertBefore(box, dWrap.firstChild);
+          }
+        }
+      } finally {
+        inRun = false;
       }
     }
 
-    var timer = null;
-    function schedule() { if (!timer) timer = setTimeout(function () { timer = null; run(); }, 150); }
+    /* 零延迟同步拦截：MutationObserver 在浏览器绘制下一帧前执行，彻底消灭切分类/PJAX 闪烁 */
     run();
-    if (document.body) {
-      new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
-    } else {
-      document.addEventListener('DOMContentLoaded', function () {
-        run();
-        if (document.body) new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
-      });
+    function bindObs() {
+      if (!document.body) return;
+      new MutationObserver(run).observe(document.body, { childList: true, subtree: true });
     }
-    document.addEventListener('pjax:end', schedule);
-    if (window.jQuery) window.jQuery(document).on('pjax:end', schedule);
+    if (document.body) bindObs();
+    else document.addEventListener('DOMContentLoaded', function () { run(); bindObs(); });
+
+    document.addEventListener('pjax:end', run);
+    document.addEventListener('pjax:success', run);
+    if (window.jQuery) window.jQuery(document).on('pjax:end pjax:success pjax:complete', run);
   } catch (e) {}
 })();
