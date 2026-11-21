@@ -191,24 +191,59 @@ body .tokyo-category-link.active .tokyo-category-name { color: #F5C242 !importan
   }
 }
 
-/* 手机端分类胶囊 */
+/* 手机端分类：从横向胶囊改成竖排条状，和桌面一致 */
 @media (max-width: 768px) {
-  .tokyo-mobile-category-chip {
-    background-color: #FBF9F4 !important;
-    border: 1px solid #E9E3D6 !important;
-    border-radius: 12px !important;
+  .xc-mob-list {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-height: none !important;
+    gap: 8px !important;
+    padding: 0 !important;
   }
-  .tokyo-mobile-category-chip-icon {
+  .xc-mob-list .tokyo-mobile-category-chip {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    height: 46px !important;
+    padding: 0 12px !important;
+    gap: 10px !important;
+    border-radius: 12px !important;
+    background: #FFFEFB !important;
+    border: 1px solid #E9E3D6 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+  }
+  .xc-mob-list .tokyo-mobile-category-chip-icon {
+    width: 26px !important;
+    height: 26px !important;
+    flex: 0 0 26px !important;
     background-color: transparent !important;
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
   }
-  .tokyo-mobile-category-chip.is-active {
-    background-color: #15151B !important;
-    border-color: #2A2A35 !important;
+  .xc-mob-list .tokyo-mobile-category-chip-text {
+    flex: 1 1 auto !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    color: #1D1D24 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
-  .tokyo-mobile-category-chip.is-active .tokyo-mobile-category-chip-text {
+  .xc-mob-list .tokyo-mobile-category-chip.is-active {
+    background: #15151B !important;
+    border-color: #2A2A35 !important;
+    box-shadow: 0 4px 12px rgba(21,21,27,.18) !important;
+  }
+  .xc-mob-list .tokyo-mobile-category-chip.is-active .tokyo-mobile-category-chip-text {
     color: #F5C242 !important;
   }
 }
@@ -278,7 +313,17 @@ body .tokyo-category-link.active .tokyo-category-name { color: #F5C242 !importan
       }
     }
 
-    function run(){ try{ enhanceCards(); enhanceCategories(); }catch(e){} }
+
+    /* 手机端：把横向胶囊的容器标出来，交给 CSS 改成竖排 */
+    function mobileList(){
+      var chips = document.querySelectorAll('.tokyo-mobile-category-chip');
+      for(var i=0;i<chips.length;i++){
+        var p = chips[i].parentElement;
+        if(p && !p.classList.contains('xc-mob-list')) p.classList.add('xc-mob-list');
+      }
+    }
+
+    function run(){ try{ enhanceCards(); enhanceCategories(); mobileList(); }catch(e){} }
 
     var timer=null;
     function schedule(){ if(timer) return; timer=setTimeout(function(){ timer=null; run(); }, 200); }
