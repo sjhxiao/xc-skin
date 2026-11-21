@@ -58,6 +58,7 @@
 .cream-waterfall-name {
   display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important;
   overflow: hidden !important; text-overflow: ellipsis !important; word-break: break-word !important;
+  white-space: normal !important; max-width: 100% !important;
   color: var(--xc-text-main) !important; font-size: 13.5px !important; font-weight: 600 !important;
   line-height: 1.45 !important; min-height: 2.9em !important;
 }
@@ -110,25 +111,47 @@
 .tokyo-category-name { font-size: 12.5px !important; font-weight: 600 !important; color: var(--cream-ink, #1D1D24) !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
 .tokyo-category-side { display: inline-flex !important; align-items: center !important; flex-shrink: 0 !important; }
 .tokyo-category-count { display: inline-block !important; font-size: 11px !important; font-weight: 600 !important; line-height: 1.2 !important; padding: 2px 7px !important; border-radius: 999px !important; background: rgba(21, 21, 27, 0.08) !important; color: var(--tokyo-text, #55524B) !important; }
-.tokyo-category-link.is-active { background-color: var(--xc-cat-active-bg) !important; background-image: none !important; border-color: #2A2A35 !important; box-shadow: 0 6px 16px rgba(21, 21, 27, 0.18) !important; }
-.tokyo-category-link.is-active::before { opacity: var(--xc-cat-active-glow-opacity) !important; }
-.tokyo-category-link.is-active .tokyo-category-name { color: var(--xc-gold) !important; }
-.tokyo-category-link.is-active .tokyo-category-count { background: rgba(245, 194, 66, 0.16) !important; color: var(--xc-gold) !important; }
+body .tokyo-category-link.is-active,
+body .tokyo-category-link.active,
+body .tokyo-category-link[aria-selected="true"] {
+  background-color: #15151B !important; background-image: none !important;
+  border-color: #2A2A35 !important; box-shadow: 0 6px 16px rgba(21, 21, 27, 0.18) !important;
+}
+body .tokyo-category-link.is-active .tokyo-category-name,
+body .tokyo-category-link.active .tokyo-category-name { color: #F5C242 !important; }
 .tokyo-nav-link { background-image: linear-gradient(90deg, var(--xc-gold), var(--xc-gold)) !important; background-repeat: no-repeat !important; background-position: left bottom !important; background-size: 100% 0% !important; transition: background-size 0.2s ease, color 0.2s ease !important; }
 .tokyo-nav-link:hover { background-size: 100% 2px !important; }
 
 /* 公告弹窗：只改背景色，其余一切不动 */
-.tokyo-notice-trigger { border: 1px solid rgba(245, 194, 66, 0.45) !important; background-color: var(--xc-cat-active-bg) !important; color: var(--xc-gold) !important; border-radius: 999px !important; }
-#tokyo-notice-popup {
+.tokyo-notice-trigger {
+  background-color: #F3EDE0 !important;
+  color: #1D1D24 !important;
+  border: 1px solid #E4DBC8 !important;
+  border-radius: 999px !important;
+}
+.tokyo-notice-trigger * { color: #1D1D24 !important; fill: #1D1D24 !important; }
+#tokyo-notice-popup,
+#tokyo-notice-popup > div,
+#tokyo-notice-popup > * > div:first-child {
   background-color: var(--xc-flat-bg) !important;
 }
 
 /* 商品详情页：只改背景色，其余一切不动 */
-.panel.tokyo-item-panel {
+.panel.tokyo-item-panel,
+.panel.tokyo-item-panel > div,
+.panel.tokyo-item-panel .panel-body {
   background-color: var(--xc-flat-bg) !important;
 }
-.panel.tokyo-item-panel .panel-body {
-  background-color: transparent !important;
+.panel.tokyo-item-panel .card,
+.panel.tokyo-item-panel [class*="panel"] {
+  background-color: var(--xc-flat-bg) !important;
+}
+
+/* 详情页主图：加暗底，让透明底的白 logo 显示出来，和列表卡片一致 */
+.tokyo-item-panel .tokyo-item-cover-card,
+.tokyo-item-panel .tokyo-item-cover-trigger,
+.tokyo-item-panel .item-cover {
+  background-color: #0B0B10 !important;
 }
 
 /* 手机端适配（≤768px）：卡片与分类砖整体收一档 */
@@ -165,6 +188,28 @@
 @media (prefers-reduced-motion: reduce) {
   .cream-waterfall-card, .cream-waterfall-card::before, .cream-waterfall-card.xc-card, .tokyo-category-link, .tokyo-nav-link {
     animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important;
+  }
+}
+
+/* 手机端分类胶囊 */
+@media (max-width: 768px) {
+  .tokyo-mobile-category-chip {
+    background-color: #FBF9F4 !important;
+    border: 1px solid #E9E3D6 !important;
+    border-radius: 12px !important;
+  }
+  .tokyo-mobile-category-chip-icon {
+    background-color: transparent !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+  .tokyo-mobile-category-chip.is-active {
+    background-color: #15151B !important;
+    border-color: #2A2A35 !important;
+  }
+  .tokyo-mobile-category-chip.is-active .tokyo-mobile-category-chip-text {
+    color: #F5C242 !important;
   }
 }
 
