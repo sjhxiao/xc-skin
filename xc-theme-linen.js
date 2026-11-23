@@ -1,10 +1,10 @@
-/* 星辰 AI 小店（xingchen666.store）· 暖亚麻黑曜换肤脚本 v2.2（防闪烁 + 排版修复版）
- * 用法：尽量把 <script src="...xc-theme-linen.js?v=22"></script> 放到后台「头部/<head>代码」区（勿加 defer/async）以彻底消除整页跳转闪烁
+/* 星辰 AI 小店（xingchen666.store）· 暖亚麻黑曜换肤脚本 v2.3（新增反重力 Antigravity 图标）
+ * 用法：尽量把 <script src="...xc-theme-linen.js?v=23"></script> 放到后台「头部/<head>代码」区（勿加 defer/async）以彻底消除整页跳转闪烁
  * 回滚：删掉后台那行引用即可，页面立即恢复原样
  */
 (function () {
   if (window.__xc) return;
-  window.__xc = 22;
+  window.__xc = 23;
 
   try {
     var SID = 'xc-theme-style';
@@ -117,6 +117,11 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--q-car
       var bot = isTile ? '' : '<rect y="126" width="200" height="74" fill="url(#' + id + 'f)"/>';
       var fade = isTile ? '' : '<linearGradient id="' + id + 'f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C1B19" stop-opacity="0"/><stop offset="1" stop-color="#1C1B19" stop-opacity="1"/></linearGradient>';
       var cfg = {
+        antigravity: {
+          bg: ['#253B8E', '#13163A', end],
+          defs: '<linearGradient id="' + id + 'g" x1="12%" y1="88%" x2="88%" y2="18%"><stop offset="0%" stop-color="#EA4335"/><stop offset="32%" stop-color="#FBBC05"/><stop offset="62%" stop-color="#34A853"/><stop offset="100%" stop-color="#4285F4"/></linearGradient>',
+          mark: '<g filter="url(#' + id + 'b)"><path transform="translate(34,28) scale(5.5)" d="M19.94 20.59c1.09.82 2.73.27 1.23-1.23C16.67 15 17.62 3 12.03 3S7.39 15 2.89 19.36c-1.64 1.64.14 2.05 1.23 1.23c4.23-2.86 3.95-7.91 7.91-7.91s3.68 5.05 7.91 7.91" fill="url(#' + id + 'g)"/></g>'
+        },
         gemini: {
           bg: ['#1A3578', '#0D1736', end],
           defs: '<linearGradient id="' + id + 'g" x1="15%" y1="85%" x2="85%" y2="15%"><stop offset="0%" stop-color="#FACC15"/><stop offset="28%" stop-color="#FB7185"/><stop offset="62%" stop-color="#4F86F7"/><stop offset="100%" stop-color="#34D399"/></linearGradient>',
@@ -198,6 +203,7 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--q-car
     }
 
     var MATCHERS = [
+      [/反重力|antigravity|\bagy\b/i, 'antigravity'],
       [/邮箱|gmail/i, 'gmail'], [/gemini|谷歌|google/i, 'gemini'], [/chatgpt|openai|\bgpt\b/i, 'openai'],
       [/claude/i, 'claude'], [/grok|cursor|推特/i, 'grok'], [/muse/i, 'muse'],
       [/perplexity/i, 'perplexity'], [/autodesk|autocad/i, 'autodesk'], [/heygen/i, 'heygen'],
