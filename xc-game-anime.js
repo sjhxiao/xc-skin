@@ -159,7 +159,9 @@ body.tokyo-theme .xc-must-go{position:relative!important;z-index:1!important;fle
 #xc-desc-modal-root .panel-body{overflow-y:auto!important;background:#FFFFFF!important;color:#0F172A!important;border-radius:10px!important;border:2px solid #000!important;margin:14px!important;padding:16px!important;box-sizing:border-box!important;opacity:1!important}
 body.tokyo-theme .panel.tokyo-description-panel.xc-hidden-src{display:none!important}
 
-body.tokyo-theme #tokyo-notice-popup>div{background:#F8FAFC!important;color:#09090B!important;border:3px solid #000!important;box-shadow:6px 6px 0 var(--a-acid)!important;border-radius:16px!important}
+body.tokyo-theme #tokyo-notice-popup>div{background:#13131C!important;color:#FFFFFF!important;border:3px solid #000!important;box-shadow:6px 6px 0 var(--a-acid)!important;border-radius:16px!important}
+body.tokyo-theme #tokyo-notice-popup .tokyo-notice-title,body.tokyo-theme #tokyo-notice-popup h3,body.tokyo-theme #tokyo-notice-popup h4{color:#FFFFFF!important;font-weight:900!important}
+body.tokyo-theme #tokyo-notice-popup .tokyo-notice-close,body.tokyo-theme #tokyo-notice-popup button[aria-label*="关闭"],body.tokyo-theme #tokyo-notice-popup button[data-close]{background:var(--a-pink)!important;color:#FFFFFF!important;border:2px solid #000!important;border-radius:8px!important;box-shadow:2px 2px 0 #000!important}
 body.tokyo-theme #online-service .online-service-launcher{background:var(--a-acid)!important;color:#09090B!important;border:2px solid #000!important;font-weight:900!important;box-shadow:3px 3px 0 var(--a-pink)!important}
 
 /* 5. 手机端（≤767px）：四列潮酷漫画 AI 图标宫格 */
