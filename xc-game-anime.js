@@ -1,14 +1,15 @@
-/* 星辰 AI 小店（xingchen666.store）· 🎴 绝区零潮酷漫画独立上线版 v1.1
- * 特点：
- * 1) 100% 保留真实 AI 官方矢量轮廓，叠加波普漫画集中线 + 粗黑描边 + 撞色贴纸底座
- * 2) 实用化潮酷商品角标（PRO / MAX / PLUS / SUPER / 特价 / 直充 / 代充 / 成品号 / 人工协助），告别抽象游戏词
- * 3) 商品详情页「宝贝详情」自动变身漫画分镜悬浮弹窗（点按钮展开，点空白/ESC关闭）
- * 4) 电脑端单列分类 + 手机端四列图标宫格 + 3D卡片微倾斜 + 0ms同步防闪烁
- * 【用法】放后台「头部/<head>代码」区（勿加 defer/async），更新改版本号如 ?v=102；删掉引用秒回滚
+/* 星辰 AI 小店 / AI世家 · 🎴 绝区零潮酷漫画独立上线版 v1.2（全站实测精修版）
+ * 本次修复（基于 aisj.store 实测）：
+ * 1) 修复最外层 .tokyo-page-frame 露出奶油黄底色的问题（全站统一暗黑波普网点）
+ * 2) 修复电脑端顶栏「登录」「创建账号」「购物」等按钮文字折行变形
+ * 3) 修复手机端右上角菜单按钮 ☰ 三条杠暗黑隐身
+ * 4) 修复详情页「批发价表格 .wholesale-table」与「付款区 .cash-pay / .pay」露出纯白块
+ * 5) 修复「宝贝详情弹窗」层级穿透发灰问题（独立挂载至 body 顶层，清晰通透不遮挡）
+ * 【注意】如果你用 jsDelivr 引用，push 新代码后记得把链接里的 @旧commit哈希 换成新提交哈希！
  */
 (function () {
   if (window.__xc) return;
-  window.__xc = 'anime-11';
+  window.__xc = 'anime-12';
 
   try {
     var SID = 'xc-theme-style';
@@ -24,22 +25,28 @@
   --a-acid:#E2FF00;--a-pink:#FF2E93;--a-cyan:#38BDF8;
 }
 
-/* 1. 全站波普漫画网点底色、粗黑描边顶栏与面板 */
-body.tokyo-theme{background:var(--a-bg)!important;background-size:16px 16px,100% 100%,100% 100%!important;background-attachment:fixed!important;color:var(--a-ink)!important}
+/* 1. 全站波普漫画网点底色（彻底盖掉 CreamWaterfall 的奶油黄外壳） */
+html,body.tokyo-theme{background:var(--a-bg)!important;background-size:16px 16px,100% 100%,100% 100%!important;background-attachment:fixed!important;color:var(--a-ink)!important}
+body.tokyo-theme .tokyo-page-frame,body.tokyo-theme #pjax-container,body.tokyo-theme main.tokyo-main,body.tokyo-theme .tokyo-shell{background:transparent!important}
 body.tokyo-theme main.tokyo-main{padding-bottom:88px!important}
+
+/* 顶部导航栏（强制单行不折字 + 修复手机汉堡图标隐身） */
 body.tokyo-theme .tokyo-nav-shell{background:transparent!important;border:none!important;box-shadow:none!important}
-body.tokyo-theme .tokyo-nav{background:rgba(17,17,25,.92)!important;border:2.5px solid #000!important;box-shadow:4px 4px 0 var(--a-acid)!important;backdrop-filter:blur(14px)!important;border-radius:14px!important}
+body.tokyo-theme .tokyo-nav{background:rgba(17,17,25,.94)!important;border:2.5px solid #000!important;box-shadow:4px 4px 0 var(--a-acid)!important;backdrop-filter:blur(14px)!important;border-radius:14px!important}
 body.tokyo-theme .tokyo-brand-chip{background:transparent!important;border:none!important;box-shadow:none!important;padding:0 4px!important}
 body.tokyo-theme .tokyo-brand-chip::after{display:none!important}
-body.tokyo-theme .tokyo-brand-name{color:#FFF!important;font-weight:900!important;letter-spacing:.02em!important;text-shadow:2px 2px 0 #000!important}
-body.tokyo-theme .tokyo-nav a.tokyo-nav-link,body.tokyo-theme .tokyo-nav .nav-link{color:#D4D4D8!important;border-radius:8px!important;font-weight:700!important;transition:.15s ease!important}
+body.tokyo-theme .tokyo-brand-name{color:#FFF!important;font-weight:900!important;letter-spacing:.02em!important;text-shadow:2px 2px 0 #000!important;white-space:nowrap!important}
+body.tokyo-theme .tokyo-nav-links{gap:4px!important;align-items:center!important}
+body.tokyo-theme .tokyo-nav a.tokyo-nav-link,body.tokyo-theme .tokyo-nav .nav-link{color:#D4D4D8!important;border-radius:8px!important;font-weight:700!important;white-space:nowrap!important;flex-shrink:0!important;padding:6px 10px!important;font-size:13px!important;transition:.15s ease!important}
 body.tokyo-theme .tokyo-nav a.tokyo-nav-link:hover,body.tokyo-theme .tokyo-nav a.tokyo-nav-link.is-active,body.tokyo-theme .tokyo-nav a.tokyo-nav-link.active{color:#09090B!important;background:var(--a-acid)!important;box-shadow:2px 2px 0 #000!important}
-body.tokyo-theme .site-language-toggle,body.tokyo-theme .tokyo-nav-toggle,body.tokyo-theme .tokyo-nav a.tokyo-button-light,body.tokyo-theme .tokyo-button.tokyo-button-light{background:#1E1E2C!important;border:2px solid #000!important;color:#FFF!important;border-radius:10px!important;box-shadow:2px 2px 0 #000!important}
+body.tokyo-theme .site-language-toggle,body.tokyo-theme .tokyo-nav-toggle,body.tokyo-theme .tokyo-nav a.tokyo-button-light,body.tokyo-theme .tokyo-button.tokyo-button-light{background:#1E1E2C!important;border:2px solid #000!important;color:#FFF!important;border-radius:10px!important;box-shadow:2px 2px 0 #000!important;white-space:nowrap!important;flex-shrink:0!important}
 body.tokyo-theme .site-language-toggle *,body.tokyo-theme .tokyo-nav-toggle *,body.tokyo-theme .tokyo-nav a.tokyo-button-light *{color:#FFF!important;stroke:#FFF!important}
-body.tokyo-theme .tokyo-nav .tokyo-notice-trigger,body.tokyo-theme button.tokyo-notice-trigger{background:var(--a-pink)!important;border:2px solid #000!important;color:#FFF!important;border-radius:10px!important;box-shadow:2px 2px 0 #000!important;font-weight:800!important}
+body.tokyo-theme .tokyo-nav-toggle .navbar-toggler-icon{filter:invert(1) brightness(2.2)!important}
+body.tokyo-theme .tokyo-nav .tokyo-notice-trigger,body.tokyo-theme button.tokyo-notice-trigger{background:var(--a-pink)!important;border:2px solid #000!important;color:#FFF!important;border-radius:10px!important;box-shadow:2px 2px 0 #000!important;font-weight:800!important;white-space:nowrap!important;flex-shrink:0!important;padding:6px 11px!important}
 body.tokyo-theme .tokyo-notice-trigger *{color:#FFF!important;fill:#FFF!important}
-body.tokyo-theme .tokyo-nav a.tokyo-button-dark,body.tokyo-theme .tokyo-button.tokyo-button-dark,body.tokyo-theme .item-search-trigger{background:var(--a-acid)!important;border:2px solid #000!important;color:#09090B!important;border-radius:10px!important;font-weight:900!important;box-shadow:3px 3px 0 var(--a-pink)!important}
+body.tokyo-theme .tokyo-nav a.tokyo-button-dark,body.tokyo-theme .tokyo-button.tokyo-button-dark,body.tokyo-theme .item-search-trigger{background:var(--a-acid)!important;border:2px solid #000!important;color:#09090B!important;border-radius:10px!important;font-weight:900!important;box-shadow:3px 3px 0 var(--a-pink)!important;white-space:nowrap!important;flex-shrink:0!important}
 body.tokyo-theme .tokyo-nav a.tokyo-button-dark *,body.tokyo-theme .tokyo-button.tokyo-button-dark *,body.tokyo-theme .item-search-trigger *{color:#09090B!important;fill:#09090B!important}
+body.tokyo-theme .tokyo-auth-actions{display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:nowrap!important}
 
 body.tokyo-theme .panel{background:var(--a-panel)!important;border:2.5px solid #000!important;border-radius:16px!important;box-shadow:5px 5px 0 rgba(226,255,0,.28)!important;color:#FFF!important}
 body.tokyo-theme .panel-header{background:transparent!important;border-bottom:2px dashed rgba(226,255,0,.22)!important}
@@ -71,7 +78,7 @@ body.tokyo-theme .tokyo-category-link.is-active,body.tokyo-theme .tokyo-category
 body.tokyo-theme .tokyo-category-link.is-active .tokyo-category-name,body.tokyo-theme .tokyo-category-link.active .tokyo-category-name,body.tokyo-theme .tokyo-category-link.is-active .tokyo-category-side{color:#09090B!important;font-weight:900!important}
 body.tokyo-theme .tokyo-category-link.is-active .tokyo-category-count,body.tokyo-theme .tokyo-category-link.active .tokyo-category-count{background:#09090B!important;color:#FFF!important}
 
-/* 3. 潮酷漫画商品卡：粗黑描边 + 稀有度撞色硬投影 + 倾斜标签 + 斜向扫光 */
+/* 3. 潮酷漫画商品卡 */
 body.tokyo-theme .cream-waterfall-card{--ash:#38BDF8;position:relative!important;isolation:isolate!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;background:var(--a-card)!important;border:2.5px solid #000!important;border-radius:14px!important;box-shadow:4px 4px 0 var(--ash)!important;color:#FFF!important;text-decoration:none!important;transition:transform .18s ease,box-shadow .18s ease!important;will-change:transform!important}
 body.tokyo-theme .cream-waterfall-card[data-xc-r="ssr"]{--ash:#E2FF00}
 body.tokyo-theme .cream-waterfall-card[data-xc-r="sr"]{--ash:#FF2E93}
@@ -94,7 +101,7 @@ body.tokyo-theme .cream-waterfall-name{display:-webkit-box!important;-webkit-lin
 body.tokyo-theme .cream-waterfall-price{display:flex!important;align-items:baseline!important;justify-content:space-between!important;width:100%!important;margin-top:auto!important;padding-top:4px!important;color:var(--a-acid)!important;font-size:21px!important;font-weight:900!important;line-height:1.1!important;text-align:left!important}
 body.tokyo-theme .cream-waterfall-price::after{content:"GET!"!important;font-size:10px!important;font-weight:900!important;padding:1px 6px!important;background:rgba(255,255,255,.08)!important;border-radius:4px!important;color:#FFF!important;transform:skewX(-10deg)!important}
 
-/* 4. 商品详情页 & 漫画分镜「宝贝详情弹窗」 */
+/* 4. 商品详情页（同步暗黑化批发价表格 + 付款选择区 + 顶层通透漫画弹窗） */
 body.tokyo-theme .panel.tokyo-item-panel>div,body.tokyo-theme .panel.tokyo-item-panel .panel-body{background:transparent!important;color:#FFF!important}
 body.tokyo-theme .tokyo-item-panel .tokyo-item-cover-card,body.tokyo-theme .tokyo-item-panel .tokyo-item-cover-trigger{background:#11111A!important;border:2.5px solid #000!important;border-radius:14px!important;box-shadow:4px 4px 0 var(--a-pink)!important;padding:0!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important}
 body.tokyo-theme .tokyo-item-panel .xc-detail-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;pointer-events:none!important;z-index:1!important}
@@ -105,18 +112,29 @@ body.tokyo-theme .tokyo-item-badges .badge-soft,body.tokyo-theme .tokyo-item-bad
 body.tokyo-theme .tokyo-item-price,body.tokyo-theme .tokyo-item-price .price{color:var(--a-acid)!important;font-weight:900!important;text-shadow:2px 2px 0 #000!important}
 body.tokyo-theme .tokyo-item-panel label{color:#D4D4D8!important;font-weight:700!important}
 body.tokyo-theme .tokyo-item-panel .form-control,body.tokyo-theme .tokyo-item-panel input,body.tokyo-theme .tokyo-item-panel select,body.tokyo-theme .tokyo-item-panel .qty-group,body.tokyo-theme .tokyo-item-panel .change-num-sub,body.tokyo-theme .tokyo-item-panel .change-num-add{background:#0A0A10!important;border:2px solid #272736!important;color:#FFF!important;border-radius:10px!important}
+body.tokyo-theme .tokyo-item-panel .wholesale-table,body.tokyo-theme .tokyo-item-panel .wholesale-table th,body.tokyo-theme .tokyo-item-panel .wholesale-table td{background:#1A1A26!important;color:#E4E4E7!important;border-color:#2D2D3F!important}
+body.tokyo-theme .tokyo-item-panel .wholesale-table th{background:#0E0E16!important;color:var(--a-acid)!important;font-weight:800!important}
+body.tokyo-theme .tokyo-item-panel .cash-pay{background:#1A1A26!important;border:2px solid #000!important;border-radius:12px!important;padding:12px!important;color:#FFF!important}
+body.tokyo-theme .tokyo-item-panel .cash-pay .pay-title,body.tokyo-theme .tokyo-item-panel .cash-pay label,body.tokyo-theme .tokyo-item-panel .cash-pay span{color:#D4D4D8!important}
+body.tokyo-theme .tokyo-item-panel .pay-list a.pay,body.tokyo-theme .tokyo-item-panel .pay-list .pay{background:#0E0E16!important;border:2px solid #2D2D3F!important;color:#FFF!important;border-radius:10px!important;font-weight:700!important;transition:.15s ease!important}
+body.tokyo-theme .tokyo-item-panel .pay-list a.pay:hover,body.tokyo-theme .tokyo-item-panel .pay-list a.pay.active,body.tokyo-theme .tokyo-item-panel .pay-list a.pay.is-active{background:var(--a-acid)!important;border-color:#000!important;color:#09090B!important;box-shadow:3px 3px 0 var(--a-pink)!important}
+body.tokyo-theme .tokyo-item-panel .pay-list a.pay:hover *,body.tokyo-theme .tokyo-item-panel .pay-list a.pay.active *{color:#09090B!important}
 body.tokyo-theme .tokyo-item-panel button[type="submit"],body.tokyo-theme .tokyo-item-panel .btn-primary,body.tokyo-theme .tokyo-item-panel .pay-button,body.tokyo-theme .tokyo-item-panel .tokyo-pay-btn{background:var(--a-acid)!important;border:2px solid #000!important;color:#09090B!important;border-radius:10px!important;font-weight:900!important;box-shadow:4px 4px 0 var(--a-pink)!important}
 
 body.tokyo-theme .xc-desc-trigger{display:inline-flex!important;align-items:center!important;gap:8px!important;margin:10px 0 6px!important;padding:9px 16px!important;background:var(--a-acid)!important;border:2px solid #000!important;color:#09090B!important;border-radius:10px!important;font-size:13px!important;font-weight:900!important;cursor:pointer!important;transform:skewX(-6deg)!important;box-shadow:3px 3px 0 var(--a-pink)!important;transition:.15s ease!important}
 body.tokyo-theme .xc-desc-trigger:hover{transform:skewX(-6deg) translate(-1px,-2px)!important;box-shadow:5px 5px 0 var(--a-pink)!important}
 
-body.tokyo-theme .panel.tokyo-description-panel.xc-as-modal{display:none!important;position:fixed!important;inset:0!important;z-index:10050!important;width:100vw!important;height:100vh!important;max-width:none!important;margin:0!important;padding:24px 16px!important;box-sizing:border-box!important;background:rgba(8,8,14,.82)!important;backdrop-filter:blur(10px)!important;border:none!important;border-radius:0!important;box-shadow:none!important;align-items:center!important;justify-content:center!important;overflow:auto!important}
-body.tokyo-theme .panel.tokyo-description-panel.xc-as-modal.xc-open{display:flex!important}
-@keyframes xcComicPop{from{opacity:0;transform:scale(.92) rotate(-1deg)}to{opacity:1;transform:scale(1) rotate(0)}}
-body.tokyo-theme .panel.tokyo-description-panel.xc-as-modal .xc-modal-card{width:100%!important;max-width:760px!important;max-height:86vh!important;display:flex!important;flex-direction:column!important;background:#13131C!important;border:3px solid #000!important;border-radius:16px!important;box-shadow:7px 7px 0 var(--a-acid)!important;overflow:hidden!important;animation:xcComicPop .2s ease both!important}
-body.tokyo-theme .panel.tokyo-description-panel.xc-as-modal .panel-header{display:flex!important;align-items:center!important;justify-content:space-between!important;padding:13px 18px!important;background:#1A1A26!important;border-bottom:2.5px solid #000!important;flex-shrink:0!important}
-body.tokyo-theme .panel.tokyo-description-panel.xc-as-modal .xc-modal-close{width:34px!important;height:34px!important;border-radius:8px!important;border:2px solid #000!important;background:var(--a-pink)!important;color:#FFF!important;font-size:15px!important;font-weight:900!important;cursor:pointer!important;box-shadow:2px 2px 0 #000!important}
-body.tokyo-theme .panel.tokyo-description-panel.xc-as-modal .panel-body{overflow-y:auto!important;background:#F8FAFC!important;color:#0F172A!important;border-radius:10px!important;border:2px solid #000!important;margin:14px!important;padding:16px!important;box-sizing:border-box!important}
+/* 顶层独立弹窗（直接挂在 body 下，彻底避开父容器模糊/层级穿透导致发灰） */
+#xc-desc-modal-root{display:none!important;position:fixed!important;inset:0!important;z-index:2147483000!important;padding:24px 16px!important;box-sizing:border-box!important;background:rgba(6,6,12,.76)!important;backdrop-filter:blur(8px)!important;align-items:center!important;justify-content:center!important;overflow:auto!important}
+#xc-desc-modal-root.xc-open{display:flex!important}
+@keyframes xcComicPop{from{opacity:0;transform:scale(.93) rotate(-1deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+#xc-desc-modal-root .xc-modal-card{position:relative!important;z-index:2!important;width:100%!important;max-width:760px!important;max-height:86vh!important;display:flex!important;flex-direction:column!important;background:#13131C!important;border:3px solid #000!important;border-radius:16px!important;box-shadow:7px 7px 0 var(--a-acid)!important;overflow:hidden!important;opacity:1!important;filter:none!important;animation:xcComicPop .2s ease both!important}
+#xc-desc-modal-root .panel-header{display:flex!important;align-items:center!important;justify-content:space-between!important;padding:13px 18px!important;background:#1A1A26!important;border-bottom:2.5px solid #000!important;flex-shrink:0!important}
+#xc-desc-modal-root .panel-title{color:#FFF!important;font-weight:900!important;font-size:15px!important;margin:0!important}
+#xc-desc-modal-root .xc-modal-close{width:34px!important;height:34px!important;border-radius:8px!important;border:2px solid #000!important;background:var(--a-pink)!important;color:#FFF!important;font-size:15px!important;font-weight:900!important;cursor:pointer!important;box-shadow:2px 2px 0 #000!important}
+#xc-desc-modal-root .panel-body{overflow-y:auto!important;background:#FFFFFF!important;color:#0F172A!important;border-radius:10px!important;border:2px solid #000!important;margin:14px!important;padding:16px!important;box-sizing:border-box!important;opacity:1!important}
+body.tokyo-theme .panel.tokyo-description-panel.xc-hidden-src{display:none!important}
+
 body.tokyo-theme #tokyo-notice-popup>div{background:#F8FAFC!important;color:#09090B!important;border:3px solid #000!important;box-shadow:6px 6px 0 var(--a-acid)!important;border-radius:16px!important}
 body.tokyo-theme #online-service .online-service-launcher{background:var(--a-acid)!important;color:#09090B!important;border:2px solid #000!important;font-weight:900!important;box-shadow:3px 3px 0 var(--a-pink)!important}
 
@@ -271,25 +289,47 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
       });
       card.addEventListener('mouseleave', function () { card.style.transform = ''; });
     }
+
+    /* 独立挂载至 body 顶层的漫画详情弹窗（离开详情页自动清理） */
     function setupDescModal() {
       var desc = document.querySelector('.panel.tokyo-description-panel'), formWrap = document.querySelector('.tokyo-item-form-wrap');
-      if (!desc || !formWrap) return;
-      if (!desc.classList.contains('xc-as-modal')) {
-        var card = document.createElement('div'); card.className = 'xc-modal-card';
-        while (desc.firstChild) card.appendChild(desc.firstChild);
-        desc.appendChild(card);
-        var head = card.querySelector('.panel-header');
-        if (!head) { head = document.createElement('div'); head.className = 'panel-header'; head.innerHTML = '<div class="panel-title">⚡ 商品情报 · 宝贝详情</div>'; card.insertBefore(head, card.firstChild); }
-        var closeBtn = document.createElement('button'); closeBtn.type = 'button'; closeBtn.className = 'xc-modal-close'; closeBtn.textContent = '✕';
-        closeBtn.onclick = function () { desc.classList.remove('xc-open'); };
+      var root = document.getElementById('xc-desc-modal-root');
+      if (!desc || !formWrap) {
+        if (root && root.parentNode) root.parentNode.removeChild(root);
+        return;
+      }
+      if (!desc.classList.contains('xc-hidden-src')) {
+        desc.classList.add('xc-hidden-src');
+        if (root && root.parentNode) root.parentNode.removeChild(root);
+        root = document.createElement('div');
+        root.id = 'xc-desc-modal-root';
+        var card = document.createElement('div');
+        card.className = 'xc-modal-card';
+        var head = document.createElement('div');
+        head.className = 'panel-header';
+        head.innerHTML = '<div class="panel-title">⚡ 商品情报 · 宝贝详情</div>';
+        var closeBtn = document.createElement('button');
+        closeBtn.type = 'button'; closeBtn.className = 'xc-modal-close'; closeBtn.textContent = '✕';
+        closeBtn.onclick = function () { root.classList.remove('xc-open'); };
         head.appendChild(closeBtn);
-        desc.addEventListener('click', function (e) { if (e.target === desc) desc.classList.remove('xc-open'); });
-        desc.classList.add('xc-as-modal');
+        var body = document.createElement('div');
+        body.className = 'panel-body';
+        var srcBody = desc.querySelector('.panel-body');
+        body.innerHTML = srcBody ? srcBody.innerHTML : desc.innerHTML;
+        card.appendChild(head);
+        card.appendChild(body);
+        root.appendChild(card);
+        root.addEventListener('click', function (e) { if (e.target === root) root.classList.remove('xc-open'); });
+        document.body.appendChild(root);
       }
       if (!formWrap.querySelector('.xc-desc-trigger')) {
-        var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'xc-desc-trigger';
+        var btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'xc-desc-trigger';
         btn.innerHTML = '💥 查看商品详情 / 售后情报 ▸';
-        btn.onclick = function () { desc.classList.add('xc-open'); };
+        btn.onclick = function () {
+          var r = document.getElementById('xc-desc-modal-root');
+          if (r) r.classList.add('xc-open');
+        };
         var anchor = formWrap.querySelector('.tokyo-item-badges') || formWrap.querySelector('.tokyo-item-inline-title');
         if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(btn, anchor.nextSibling);
         else formWrap.insertBefore(btn, formWrap.firstChild);
@@ -334,8 +374,8 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
             var box = document.createElement('span'); box.className = 'xc-detail-art'; box.innerHTML = makeArt(dk, false);
             dWrap.insertBefore(box, dWrap.firstChild);
           }
-          setupDescModal();
         }
+        setupDescModal();
       } finally { inRun = false; }
     }
 
@@ -345,7 +385,7 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
       if (document.body) new MutationObserver(run).observe(document.body, { childList: true, subtree: true });
     };
     document.body ? bind() : document.addEventListener('DOMContentLoaded', function () { run(); bind(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var m = document.querySelector('.panel.tokyo-description-panel.xc-open'); if (m) m.classList.remove('xc-open'); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var r = document.getElementById('xc-desc-modal-root'); if (r) r.classList.remove('xc-open'); } });
     document.addEventListener('pjax:end', run);
     document.addEventListener('pjax:success', run);
     if (window.jQuery) window.jQuery(document).on('pjax:end pjax:success pjax:complete', run);
