@@ -1,15 +1,14 @@
-/* 星辰 AI 小店 / AI世家 · 🎴 绝区零潮酷漫画独立上线版 v1.2（全站实测精修版）
- * 本次修复（基于 aisj.store 实测）：
- * 1) 修复最外层 .tokyo-page-frame 露出奶油黄底色的问题（全站统一暗黑波普网点）
- * 2) 修复电脑端顶栏「登录」「创建账号」「购物」等按钮文字折行变形
- * 3) 修复手机端右上角菜单按钮 ☰ 三条杠暗黑隐身
- * 4) 修复详情页「批发价表格 .wholesale-table」与「付款区 .cash-pay / .pay」露出纯白块
- * 5) 修复「宝贝详情弹窗」层级穿透发灰问题（独立挂载至 body 顶层，清晰通透不遮挡）
+/* 星辰 AI 小店 / AI世家 · 🎴 绝区零潮酷漫画独立上线版 v1.3（精修必看弹窗 + CapCut/Suno 图标 + 搜索栏修复）
+ * 本次更新：
+ * 1) 修复搜索栏外层 .tokyo-search-combo 露出白色胶囊底壳与黑框错位顶起问题
+ * 2) 新增 CapCut（剪映）与 Suno 官方轮廓波普漫画图标（分类 + 卡片 + 详情页通用）
+ * 3) 商品详情入口升级为高醒目「🔥 下单必看」脉冲横幅按钮，引导买家下单前必看须知
+ * 4) 附带细节精修：提亮联系方式占位字、详情封面满铺无底缝、左侧分类栏暗色极细滚动条
  * 【注意】如果你用 jsDelivr 引用，push 新代码后记得把链接里的 @旧commit哈希 换成新提交哈希！
  */
 (function () {
   if (window.__xc) return;
-  window.__xc = 'anime-12';
+  window.__xc = 'anime-13';
 
   try {
     var SID = 'xc-theme-style';
@@ -53,17 +52,23 @@ body.tokyo-theme .panel-header{background:transparent!important;border-bottom:2p
 body.tokyo-theme .panel-kicker{color:var(--a-acid)!important;font-weight:900!important;letter-spacing:.12em!important}
 body.tokyo-theme .panel-title,body.tokyo-theme .tokyo-current-name{color:#FFF!important;font-weight:900!important}
 body.tokyo-theme .tokyo-catalog-body,body.tokyo-theme .tokyo-table-wrap,body.tokyo-theme .cream-waterfall{background:transparent!important;border-color:transparent!important;box-shadow:none!important}
-body.tokyo-theme .tokyo-searchbox,body.tokyo-theme .tokyo-searchbox-combo{background:#0A0A10!important;border:2px solid #000!important;border-radius:10px!important;box-shadow:2px 2px 0 rgba(226,255,0,.35)!important;color:#FFF!important}
-body.tokyo-theme .item-search-input{background:transparent!important;color:#FFF!important}
-body.tokyo-theme .item-search-input::placeholder{color:#71717A!important}
+body.tokyo-theme .tokyo-search-combo{display:flex!important;align-items:center!important;gap:8px!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important;overflow:visible!important}
+body.tokyo-theme .tokyo-searchbox,body.tokyo-theme .tokyo-searchbox-combo{display:flex!important;align-items:center!important;gap:8px!important;height:40px!important;min-height:40px!important;margin:0!important;padding:0 12px!important;background:#0A0A10!important;border:2px solid #000!important;border-radius:10px!important;box-shadow:3px 3px 0 rgba(226,255,0,.38)!important;color:#FFF!important;box-sizing:border-box!important}
+body.tokyo-theme .tokyo-searchbox i,body.tokyo-theme .tokyo-searchbox-combo i{color:#A1A1AA!important;margin:0!important;flex-shrink:0!important}
+body.tokyo-theme .item-search-input{background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important;color:#FFF!important;height:100%!important;margin:0!important;padding:0!important}
+body.tokyo-theme .item-search-input::placeholder{color:#8E8E9E!important;opacity:1!important}
+body.tokyo-theme .tokyo-search-combo .item-search-trigger{height:40px!important;min-height:40px!important;margin:0!important;padding:0 15px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;box-sizing:border-box!important}
 
 /* 防闪烁遮罩 */
 body.tokyo-theme .cream-waterfall-cover:not(.xc-ready),
 body.tokyo-theme .tokyo-category-icon:not(.xc-ready),
 body.tokyo-theme .tokyo-mobile-category-chip-icon:not(.xc-ready){background-image:none!important}
 
-/* 2. 电脑端左侧分类：潮酷硬边单列 */
-body.tokyo-theme #tokyo-category-tree.tokyo-category-tree{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:4px 2px!important;max-height:calc(100vh - 150px)!important}
+/* 2. 电脑端左侧分类：潮酷硬边单列 + 暗色极细滚动条 */
+body.tokyo-theme #tokyo-category-tree.tokyo-category-tree{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:4px 4px 4px 2px!important;max-height:calc(100vh - 150px)!important;scrollbar-width:thin!important;scrollbar-color:#3F3F52 transparent!important}
+body.tokyo-theme #tokyo-category-tree.tokyo-category-tree::-webkit-scrollbar{width:5px!important}
+body.tokyo-theme #tokyo-category-tree.tokyo-category-tree::-webkit-scrollbar-thumb{background:#3F3F52!important;border-radius:999px!important}
+body.tokyo-theme #tokyo-category-tree.tokyo-category-tree::-webkit-scrollbar-track{background:transparent!important}
 body.tokyo-theme .tokyo-category-node,body.tokyo-theme .tokyo-category-row{width:100%!important;margin:0!important}
 body.tokyo-theme .tokyo-category-link{display:flex!important;align-items:center!important;gap:10px!important;width:100%!important;height:46px!important;min-height:46px!important;max-height:46px!important;padding:0 11px!important;margin:0!important;box-sizing:border-box!important;background:#1A1A26!important;border:2px solid #000!important;border-radius:11px!important;color:#FFF!important;box-shadow:3px 3px 0 #000!important;transition:.15s ease!important}
 body.tokyo-theme .tokyo-category-link:hover{border-color:var(--a-acid)!important;transform:translate(-1px,-1px)!important;box-shadow:4px 4px 0 var(--a-acid)!important}
@@ -105,13 +110,23 @@ body.tokyo-theme .cream-waterfall-price::after{content:"GET!"!important;font-siz
 body.tokyo-theme .panel.tokyo-item-panel>div,body.tokyo-theme .panel.tokyo-item-panel .panel-body{background:transparent!important;color:#FFF!important}
 body.tokyo-theme .tokyo-item-panel .tokyo-item-cover-card,body.tokyo-theme .tokyo-item-panel .tokyo-item-cover-trigger{background:#11111A!important;border:2.5px solid #000!important;border-radius:14px!important;box-shadow:4px 4px 0 var(--a-pink)!important;padding:0!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important}
 body.tokyo-theme .tokyo-item-panel .xc-detail-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;pointer-events:none!important;z-index:1!important}
+body.tokyo-theme .tokyo-item-panel .xc-detail-art svg{width:100%!important;height:100%!important;display:block!important}
 body.tokyo-theme .tokyo-item-panel .tokyo-item-cover-hint{z-index:5!important;background:#09090B!important;border:2px solid var(--a-acid)!important;color:var(--a-acid)!important;font-weight:800!important}
-body.tokyo-theme .tokyo-item-form-wrap::before{content:"⚡ SPECIAL DROP · 潮酷装备检视"!important;display:inline-block!important;margin-bottom:8px!important;padding:2px 10px!important;background:var(--a-pink)!important;border:2px solid #000!important;color:#FFF!important;font-size:11px!important;font-weight:900!important;transform:skewX(-8deg)!important;box-shadow:2px 2px 0 #000!important}
+body.tokyo-theme .tokyo-item-form-wrap::before{content:"⚡ SPECIAL DROP · 潮酷装备检视"!important;display:inline-block!important;align-self:flex-start!important;width:fit-content!important;margin-bottom:8px!important;padding:2px 10px!important;background:var(--a-pink)!important;border:2px solid #000!important;color:#FFF!important;font-size:11px!important;font-weight:900!important;transform:skewX(-8deg)!important;box-shadow:2px 2px 0 #000!important}
 body.tokyo-theme .tokyo-item-inline-title{color:#FFF!important;font-weight:900!important}
 body.tokyo-theme .tokyo-item-badges .badge-soft,body.tokyo-theme .tokyo-item-badges .badge-soft-success,body.tokyo-theme .tokyo-item-badges .badge-soft-tag,body.tokyo-theme .tokyo-item-badges .badge-soft-info{background:#1F1F2E!important;border:1.5px solid #000!important;color:#FFF!important;border-radius:6px!important;font-weight:700!important}
 body.tokyo-theme .tokyo-item-price,body.tokyo-theme .tokyo-item-price .price{color:var(--a-acid)!important;font-weight:900!important;text-shadow:2px 2px 0 #000!important}
 body.tokyo-theme .tokyo-item-panel label{color:#D4D4D8!important;font-weight:700!important}
 body.tokyo-theme .tokyo-item-panel .form-control,body.tokyo-theme .tokyo-item-panel input,body.tokyo-theme .tokyo-item-panel select,body.tokyo-theme .tokyo-item-panel .qty-group,body.tokyo-theme .tokyo-item-panel .change-num-sub,body.tokyo-theme .tokyo-item-panel .change-num-add{background:#0A0A10!important;border:2px solid #272736!important;color:#FFF!important;border-radius:10px!important}
+body.tokyo-theme .tokyo-item-panel .form-control::placeholder,body.tokyo-theme .tokyo-item-panel input::placeholder{color:#8E8E9E!important;opacity:1!important}
+/* 宝贝类型 SKU 选项：未选暗黑沉稳，已选中（.is-primary）亮白高亮 + 荧光黄漫画投影 */
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option,body.tokyo-theme .tokyo-item-panel .sku-list a.sku{background:#181826!important;border:2px solid #323246!important;color:#D4D4D8!important;box-shadow:2px 2px 0 #000!important;transition:.15s ease!important}
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option .tokyo-sku-current-price,body.tokyo-theme .tokyo-item-panel .sku-list a.sku .tokyo-sku-current-price{background:#0B0B11!important;color:#A1A1AA!important;border:1px solid #2D2D3F!important}
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option .tokyo-sku-name,body.tokyo-theme .tokyo-item-panel .sku-list a.sku .tokyo-sku-name{color:#D4D4D8!important;font-weight:700!important}
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option:hover,body.tokyo-theme .tokyo-item-panel .sku-list a.sku:hover{background:#222234!important;border-color:var(--a-acid)!important;color:#FFF!important}
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option.is-primary,body.tokyo-theme .tokyo-item-panel .sku-list a.sku.is-primary,body.tokyo-theme .tokyo-item-panel .sku-list a.sku.active{background:#FFFFFF!important;border:2.5px solid #000!important;color:#09090B!important;box-shadow:4px 4px 0 var(--a-acid)!important;transform:translate(-1px,-1px)!important}
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option.is-primary .tokyo-sku-current-price,body.tokyo-theme .tokyo-item-panel .sku-list a.sku.is-primary .tokyo-sku-current-price,body.tokyo-theme .tokyo-item-panel .sku-list a.sku.active .tokyo-sku-current-price{background:#09090B!important;color:var(--a-acid)!important;border-color:#09090B!important;font-weight:900!important}
+body.tokyo-theme .tokyo-item-panel .sku-list .tokyo-sku-option.is-primary .tokyo-sku-name,body.tokyo-theme .tokyo-item-panel .sku-list a.sku.is-primary .tokyo-sku-name,body.tokyo-theme .tokyo-item-panel .sku-list a.sku.active .tokyo-sku-name{color:#09090B!important;font-weight:900!important}
 body.tokyo-theme .tokyo-item-panel .wholesale-table,body.tokyo-theme .tokyo-item-panel .wholesale-table th,body.tokyo-theme .tokyo-item-panel .wholesale-table td{background:#1A1A26!important;color:#E4E4E7!important;border-color:#2D2D3F!important}
 body.tokyo-theme .tokyo-item-panel .wholesale-table th{background:#0E0E16!important;color:var(--a-acid)!important;font-weight:800!important}
 body.tokyo-theme .tokyo-item-panel .cash-pay{background:#1A1A26!important;border:2px solid #000!important;border-radius:12px!important;padding:12px!important;color:#FFF!important}
@@ -121,8 +136,17 @@ body.tokyo-theme .tokyo-item-panel .pay-list a.pay:hover,body.tokyo-theme .tokyo
 body.tokyo-theme .tokyo-item-panel .pay-list a.pay:hover *,body.tokyo-theme .tokyo-item-panel .pay-list a.pay.active *{color:#09090B!important}
 body.tokyo-theme .tokyo-item-panel button[type="submit"],body.tokyo-theme .tokyo-item-panel .btn-primary,body.tokyo-theme .tokyo-item-panel .pay-button,body.tokyo-theme .tokyo-item-panel .tokyo-pay-btn{background:var(--a-acid)!important;border:2px solid #000!important;color:#09090B!important;border-radius:10px!important;font-weight:900!important;box-shadow:4px 4px 0 var(--a-pink)!important}
 
-body.tokyo-theme .xc-desc-trigger{display:inline-flex!important;align-items:center!important;gap:8px!important;margin:10px 0 6px!important;padding:9px 16px!important;background:var(--a-acid)!important;border:2px solid #000!important;color:#09090B!important;border-radius:10px!important;font-size:13px!important;font-weight:900!important;cursor:pointer!important;transform:skewX(-6deg)!important;box-shadow:3px 3px 0 var(--a-pink)!important;transition:.15s ease!important}
-body.tokyo-theme .xc-desc-trigger:hover{transform:skewX(-6deg) translate(-1px,-2px)!important;box-shadow:5px 5px 0 var(--a-pink)!important}
+@keyframes xcMustPulse{0%,100%{transform:scale(1) skewX(-8deg);box-shadow:2px 2px 0 #000,0 0 0 0 rgba(255,46,147,.65)}50%{transform:scale(1.05) skewX(-8deg);box-shadow:2px 2px 0 #000,0 0 0 7px rgba(255,46,147,0)}}
+@keyframes xcMustSheen{0%,62%{transform:translateX(-140%) skewX(-20deg)}100%{transform:translateX(260%) skewX(-20deg)}}
+body.tokyo-theme .xc-desc-trigger{position:relative!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;width:100%!important;margin:12px 0 8px!important;padding:11px 14px!important;background:linear-gradient(95deg,#E2FF00 0%,#EEFF55 62%,#D9F900 100%)!important;border:2.5px solid #000!important;color:#09090B!important;border-radius:12px!important;cursor:pointer!important;text-align:left!important;box-shadow:4px 4px 0 var(--a-pink)!important;box-sizing:border-box!important;transition:transform .15s ease,box-shadow .15s ease!important}
+body.tokyo-theme .xc-desc-trigger::before{content:""!important;position:absolute!important;top:0!important;bottom:0!important;left:0!important;width:36%!important;pointer-events:none!important;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent)!important;animation:xcMustSheen 3.2s ease-in-out infinite!important}
+body.tokyo-theme .xc-desc-trigger:hover{transform:translate(-2px,-2px)!important;box-shadow:6px 6px 0 var(--a-pink)!important}
+body.tokyo-theme .xc-must-left{position:relative!important;z-index:1!important;display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important;flex:1 1 auto!important}
+body.tokyo-theme .xc-must-tag{flex-shrink:0!important;display:inline-flex!important;align-items:center!important;gap:3px!important;padding:4px 9px!important;background:#FF1E56!important;color:#FFF!important;border:2px solid #000!important;border-radius:6px!important;font-size:11.5px!important;font-weight:900!important;letter-spacing:.04em!important;line-height:1.15!important;animation:xcMustPulse 1.8s ease-in-out infinite!important}
+body.tokyo-theme .xc-must-copy{display:flex!important;flex-direction:column!important;gap:2px!important;min-width:0!important}
+body.tokyo-theme .xc-must-title{font-size:14px!important;font-weight:900!important;color:#09090B!important;line-height:1.25!important}
+body.tokyo-theme .xc-must-sub{font-size:11.5px!important;font-weight:700!important;color:#27272A!important;line-height:1.25!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+body.tokyo-theme .xc-must-go{position:relative!important;z-index:1!important;flex-shrink:0!important;padding:6px 12px!important;background:#09090B!important;color:var(--a-acid)!important;border:2px solid #000!important;border-radius:8px!important;font-size:12px!important;font-weight:900!important;letter-spacing:.03em!important;white-space:nowrap!important;box-shadow:2px 2px 0 rgba(0,0,0,.25)!important}
 
 /* 顶层独立弹窗（直接挂在 body 下，彻底避开父容器模糊/层级穿透导致发灰） */
 #xc-desc-modal-root{display:none!important;position:fixed!important;inset:0!important;z-index:2147483000!important;padding:24px 16px!important;box-sizing:border-box!important;background:rgba(6,6,12,.76)!important;backdrop-filter:blur(8px)!important;align-items:center!important;justify-content:center!important;overflow:auto!important}
@@ -157,6 +181,11 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
   body.tokyo-theme .cream-waterfall-name{font-size:12px!important;line-height:1.4!important;min-height:2.8em!important}
   body.tokyo-theme .cream-waterfall-price{font-size:17px!important}
   body.tokyo-theme .cream-waterfall-price::after{display:none!important}
+  body.tokyo-theme .xc-desc-trigger{padding:10px 11px!important;gap:8px!important}
+  body.tokyo-theme .xc-must-tag{font-size:10.5px!important;padding:3px 7px!important}
+  body.tokyo-theme .xc-must-title{font-size:12.5px!important}
+  body.tokyo-theme .xc-must-sub{display:none!important}
+  body.tokyo-theme .xc-must-go{padding:5px 9px!important;font-size:11px!important}
 }
 `;
     (document.head || document.documentElement).appendChild(style);
@@ -215,6 +244,16 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
           bg: '#20133D', ray: '#C084FC', plate: '#4F46E5',
           mark: '<text x="100" y="109" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="900" font-size="36" fill="#E2FF00" stroke="#09090B" stroke-width="2.5" paint-order="stroke">HeyGen</text>'
         },
+        capcut: {
+          bg: '#14151E', ray: '#38BDF8', plate: '#FFFFFF',
+          mark: '<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M55 108V121Q55 132 66 132H88L145 64" stroke="#09090B" stroke-width="14"/><path d="M98 76L134 119" stroke="#FFFFFF" stroke-width="21"/><path d="M55 88V75Q55 64 66 64H88L145 132" stroke="#09090B" stroke-width="14"/></g>'
+        },
+        suno: {
+          bg: '#261115', ray: '#FF7A00', plate: '#181018',
+          defs: '<linearGradient id="' + id + 'g" x1="15%" y1="12%" x2="88%" y2="88%"><stop offset="0%" stop-color="#FFD000"/><stop offset="48%" stop-color="#FF5500"/><stop offset="100%" stop-color="#E11D48"/></linearGradient>',
+          mark: '<circle cx="100" cy="98" r="46" fill="url(#' + id + 'g)" stroke="#09090B" stroke-width="5"/><path d="M62 96A38 38 0 0 1 134 80C122 94 108 98 96 92C82 85 70 88 62 96Z" fill="#FFFFFF" stroke="#09090B" stroke-width="3.5" stroke-linejoin="round"/><path d="M138 100A38 38 0 0 1 66 116C78 102 92 98 104 104C118 111 130 108 138 100Z" fill="#FFFFFF" stroke="#09090B" stroke-width="3.5" stroke-linejoin="round"/>'
+            + (isTile ? '' : '<text x="100" y="184" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="900" font-size="18" letter-spacing="4" fill="#FFE082" stroke="#09090B" stroke-width="3" paint-order="stroke">SUNO</text>')
+        },
         figma: {
           bg: '#1A162B', ray: '#FF2E93', plate: '#18181B',
           mark: '<g transform="translate(46,38) scale(4.6)" stroke="#09090B" stroke-width="1"><path d="M8.5 2H12v7H8.5a3.5 3.5 0 1 1 0-7z" fill="#F24E1E"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" fill="#FF7262"/><path d="M15.5 9a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z" fill="#1ABCFE"/><path d="M8.5 9H12v7H8.5a3.5 3.5 0 1 1 0-7z" fill="#A259FF"/><path d="M8.5 16H12v3.5a3.5 3.5 0 1 1-3.5-3.5z" fill="#0ACF83"/></g>'
@@ -253,6 +292,7 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
       [/邮箱|gmail/i, 'gmail'], [/gemini|谷歌|google/i, 'gemini'], [/chatgpt|openai|\bgpt\b/i, 'openai'],
       [/claude/i, 'claude'], [/grok|cursor|推特/i, 'grok'], [/muse/i, 'muse'],
       [/perplexity/i, 'perplexity'], [/autodesk|autocad/i, 'autodesk'], [/heygen/i, 'heygen'],
+      [/capcut|剪映/i, 'capcut'], [/suno/i, 'suno'],
       [/figma|设计|绘画|canva|midjourney/i, 'figma'], [/自媒体|youtube|影音|视频|microsoft/i, 'media'],
       [/推荐|热门|精选/, 'rec'], [/新上|新品/, 'new'], [/测试|代码|开发/, 'code']
     ];
@@ -307,7 +347,7 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
         card.className = 'xc-modal-card';
         var head = document.createElement('div');
         head.className = 'panel-header';
-        head.innerHTML = '<div class="panel-title">⚡ 商品情报 · 宝贝详情</div>';
+        head.innerHTML = '<div class="panel-title"><span style="display:inline-block;margin-right:8px;padding:2px 7px;background:#FF1E56;color:#FFF;border:1.5px solid #000;border-radius:5px;font-size:11px;font-weight:900;vertical-align:1px">🔥 下单必看</span>商品详情 · 售后情报</div>';
         var closeBtn = document.createElement('button');
         closeBtn.type = 'button'; closeBtn.className = 'xc-modal-close'; closeBtn.textContent = '✕';
         closeBtn.onclick = function () { root.classList.remove('xc-open'); };
@@ -325,7 +365,7 @@ body.tokyo-theme #online-service .online-service-launcher{background:var(--a-aci
       if (!formWrap.querySelector('.xc-desc-trigger')) {
         var btn = document.createElement('button');
         btn.type = 'button'; btn.className = 'xc-desc-trigger';
-        btn.innerHTML = '💥 查看商品详情 / 售后情报 ▸';
+        btn.innerHTML = '<span class="xc-must-left"><span class="xc-must-tag">🔥 下单必看</span><span class="xc-must-copy"><span class="xc-must-title">查看商品详情 / 使用与售后须知</span><span class="xc-must-sub">下单前请务必点击阅读发货规则、风控与质保说明</span></span></span><span class="xc-must-go">立即查看 ▸</span>';
         btn.onclick = function () {
           var r = document.getElementById('xc-desc-modal-root');
           if (r) r.classList.add('xc-open');
